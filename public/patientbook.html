@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="text-center mt-20">
+        <h1 class="text-3xl mb-4">Appointment Details</h1>
+    <table class="m-auto">
+        <thead>
+            <tr>
+                <th class="border-2  px-4 py-2">Token ID : </th> 
+                <th class="border-2  px-4 py-2">Patient Name : </th> 
+                <th class="border-2  px-4 py-2">Doctor Name : </th> 
+                <th class="border-2  px-4 py-2">Appointment Date : </th> 
+                <th class="border-2  px-4 py-2">Appointment Time : </th> 
+                
+            </tr>
+        </thead>
+        <tbody id="printdetails">
+
+        </tbody>
+   </table>
+   <a href="/"> <button class="w-20 h-10 bg-black text-white rounded-lg mt-10">Home</button></a>
+    </div>
+
+    <script>
+        async function apmtDetails(){
+            try{
+                const response = await fetch('/view/data');
+                const EmployeeDet = await response.json();
+                const emptable= document.getElementById('printdetails')
+                emptable.innerHTML = '';
+                EmployeeDet.forEach(element => {
+                    emptable.innerHTML +=
+
+                 `   <tr>
+                           <td>${element.tokenID}</td>
+                           <td>${element.pName}</td>
+                           <td>${element.drName}</td>
+                           <td>${element.date}</td>
+                           <td>${element.time}</td>
+                     </tr> ` ;
+                });
+            }
+            catch(error){
+                console.error('Error');
+
+            }
+
+        }
+ 
+        document.addEventListener('DOMContentLoaded',apmtDetails);
+    </script>
+</body>
+</html>

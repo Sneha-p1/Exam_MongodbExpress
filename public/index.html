@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="text-center mt-28">
+       <h1 class="text-3xl text-gray-800 mb-6">Appointment List</h1>
+       <input type="search" id="id" class="border-2 h-10 rounded-lg mt-7 p-3" placeholder="Token ID">
+       <button onclick="search()" class="w-20 h-10 bg-blue-700 text-white mt-10 rounded-lg">Search</button><br>
+       <a href="/add"> <button class="w-52 h-10 bg-black text-white mt-10 rounded-lg">Appointment Booking</button></a>
+                
+    </div>
+
+    <script>
+        function search(){
+            const id=document.getElementById("id").value
+            const url=`/search/${id}`;
+            console.log(url);
+            window.location.href=url;
+        }
+    </script>
+    
+</body>
+</html>

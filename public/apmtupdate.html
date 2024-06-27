@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="text-center mt-20">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Appointment Update</h1>
+        <form id="update" method="POST">
+            <input type="text" name="TokenID" id="TokenID" class="border-2 h-10 rounded-lg mt-7 p-3" placeholder="Token ID"><br>
+                <input type="text" name="pName" id="pName" class="border-2 h-10 rounded-lg mt-7 p-3" placeholder="Patient Name"><br>
+                <input type="text" name="drName" id="drName" class="border-2 h-10 rounded-lg mt-7 p-3" placeholder="Doctor Name"><br>
+                <input type="text" name="date" id="date" class="border-2 h-10 rounded-lg mt-7 p-3" placeholder="Appointment Date"><br>
+                <input type="text" name="time" id="time" class="border-2 h-10 rounded-lg mt-7 p-3" placeholder="Appointment Time"><br>
+                <button  class="w-32 h-10 bg-black hover:bg-gray-600 text-white rounded-lg mt-10">Update</button>
+            
+        </form>
+        <a href="/"><button class="w-20 h-10 bg-black hover:bg-gray-600 text-white rounded-lg mt-10">Home</button></a>
+    
+    </div>
+
+    <script>
+        async function Update(){
+            const url=window.location.href;
+            const id=window.location.pathname.split('/').pop();
+
+            
+            try{
+                document.getElementById("update").action=`/update/data/${id}`;
+
+        }
+
+        catch(error){
+            console.log("error");
+        }
+    }
+    document.addEventListener('DOMContentLoaded', Update);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="text-center mt-24">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Appointment Details</h1>
+        Patient ID : <span id="pid"></span><br>
+        Patient Name : <span id="pname"></span><br>
+        Doctor Name : <span id="drname"></span><br>
+        Appointment Date : <span id="date"></span><br>
+        Appointment Time : <span id="time"></span><br>
+
+        <button onclick="Update()" class="w-20 h-10 bg-black hover:bg-gray-600 text-white rounded-lg mt-10">Update</button>
+    <form id="delete" method="POST">
+        <button onclick="Delete()" class="w-20 h-10 bg-black hover:bg-gray-600 text-white rounded-lg mt-10">Delete</button>
+    </form>
+        <a href="/"><button class="w-20 h-10 bg-black hover:bg-gray-600 text-white rounded-lg mt-10">Home</button></a>
+
+    </div>
+
+    <script>
+        function Update() {
+            const id = window.location.pathname.split('/').pop();
+
+            const url = `/update/${id}`;
+
+            console.log(url);
+            window.location.href = url;
+        }
+
+
+        function Delete() {
+
+            const id = window.location.pathname.split('/').pop();
+
+            document.getElementById('delete').action = `/delete/${id}`;
+        }
+
+        async function getdata() {
+
+            const url = window.location.href;
+            const id = window.location.pathname.split('/').pop();
+
+            const ul = `search/data/${id}`;
+            try {
+
+                const response = await fetch(`/search/data/${id}`);
+                const data = await response.json();
+
+
+                document.getElementById("pid").innerHTML = data.TokenID;
+                document.getElementById("pname").innerHTML = data.PName;
+                document.getElementById("drname").innerHTML = data.DRName;
+                document.getElementById("date").innerHTML = data.Date;
+                document.getElementById("time").innerHTML = data.Time;
+            }
+
+            catch (error) {
+                console.log("error");
+                document.getElementById("empID").innerHTML = "no id found";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', getdata);
+
+    </script>
+</body>
+
+</html>
